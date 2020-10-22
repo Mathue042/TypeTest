@@ -207,7 +207,7 @@ class SceneGenerator {
         test.enter((ctx) => {
             bot.telegram.sendMessage(ctx.chat.id, ask[bigCount].ques, inlineKeyboard(bigCount, smallCount))
             test.action(askCallData, (ctx) => {
-                if (ctx.match == ('ans300' || 'ans301' || 'ans302')) {
+                if ((ctx.match == ('ans300' || 'ans301' || 'ans302'))|| bigCount == 31) {
                     console.log(counterPt2, counter);
                     switch (true) {
                         case (counterPt2 >= 19 && counterPt2 <= 32): bot.telegram.sendMessage(ctx.chat.id, 'Вы лев. РРРРРРРРР')
@@ -222,9 +222,6 @@ class SceneGenerator {
                         if (bigCount <= 10) {
                             counter += ask[bigCount].weight
                             console.log('counter ' + counter + ' counterPt' + counterPt2)
-                        } else {
-                            counterPt2 += ask[bigCount].weight[ctx.match[ctx.match.length - 1]]
-                            console.log('counter ' + counter + ' counterPt' + counterPt2);
                         }
                     }   if(bigCount > 10){
                         console.log(bigCount)
