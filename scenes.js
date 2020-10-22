@@ -183,14 +183,14 @@ var ask = {
         vars: ['Совершенно удовлетворен ', 'Вполне удовлетворен', 'Не удовлетворен'],
         action_data: 'ans30'
     },
-}
+}  //?масив вопросов
 var askCallData = [
     'ans10', 'ans11', 'ans20', 'ans21', 'ans30', 'ans31', 'ans40', 'ans41', 'ans50', 'ans51', 'ans60', 'ans61', 'ans70', 'ans71', 'ans80', 'ans81', 'ans90', 'ans91',
     'ans100', 'ans101', 'ans110', 'ans111', 'ans120', 'ans121', 'ans130', 'ans131', 'ans140', 'ans141', 'ans150', 'ans151', 'ans160', 'ans161', 'ans170', 'ans171', 'ans180', 'ans181',
     'ans190', 'ans191', 'ans200', 'ans201', 'ans210', 'ans211', 'ans220', 'ans221', 'ans230', 'ans231', 'ans240', 'ans241', 'ans250', 'ans251', 'ans260', 'ans261',
     'ans270', 'ans271', 'ans280', 'ans281', 'ans290', 'ans291', 'ans300', 'ans301', 'ans102', 'ans112', 'ans122', 'ans132', 'ans142', 'ans152', 'ans162', 'ans172', 'ans182', 'ans192',
     'ans202', 'ans212', 'ans212', 'ans222', 'ans232', 'ans242', 'ans252', 'ans262', 'ans272', 'ans282', 'ans292', 'ans302',
-]
+] //?масив данных на колбек
 
 var bigCount = 1
 var smallCount = 0
@@ -205,7 +205,7 @@ class SceneGenerator {
     TestScene() {
         const test = new Scene('test')
         test.enter((ctx) => {
-            bot.telegram.sendMessage(ctx.chat.id, ask[bigCount].ques, inlineKeyboard(bigCount, smallCount))
+            bot.telegram.sendMessage(ctx.chat.id, ask[bigCount].ques, inlineKeyboard(bigCount, smallCount)) //? выводит вопрос и коавиатуру
             test.action(askCallData, (ctx) => {
                 if ((ctx.match == ('ans300' || 'ans301' || 'ans302'))|| bigCount == 31) {
                     console.log(counterPt2, counter);
@@ -230,7 +230,9 @@ class SceneGenerator {
                         console.log('counter ' + counter + ' counterPt' + counterPt2)
                     }else{console.log('counter ' + counter + ' counterPt' + counterPt2)}
                     ctx.scene.reenter()
-                }
+                }//*этот огромный test.action принимает колбек дату , смотрит не последний ли это вопрос(если это так, то говорит какой ты зверь),  затем стоит контрукция ифов которая
+                //* прибавляет нужным счетчикам значения весов, чтобы определить  какой ты зверь) мб эта конструкция карявая и при желании можно переписать 
+                
             })
 
         })
